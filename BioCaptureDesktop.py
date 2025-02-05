@@ -2,16 +2,19 @@ import sys
 import cv2
 import numpy as np
 import pymysql
+import ctypes
 from PyQt6.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QVBoxLayout, QGridLayout, QFileDialog, QLineEdit, QMessageBox
 from PyQt6.QtGui import QPixmap, QImage
 from PyQt6.QtCore import Qt
-from mantra.MFS100 import MFS100  # type: ignore # Importing Mantra MFS100 SDK
+#from mantra.MFS100 import MFS100  #Importing Mantra MFS100 SDK
 
 class BioCaptureApp(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.mfs100 = MFS100()  # Initialize the Mantra MFS100 SDK
+        # Load the MFS100 DLL (adjust path as needed)
+        #MFS100 = ctypes.WinDLL("C:\Program Files\Mantra\MFS100\Driver\MFS100Test\MANTRA.MFS100.dll")
+        self.mfs100 = ctypes.WinDLL("C:\Program Files\Mantra\MFS100\Driver\MFS100Test\MANTRA.MFS100.dll") #MFS100()  # Initialize the Mantra MFS100 SDK
         self.photoPath = "FingerPrints"
         self.fingerprintPath = "Photos"
 
